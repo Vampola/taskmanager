@@ -8,6 +8,7 @@ import moment from 'moment';
 const ProjectTable = (state) => (
   <div>
     <ReactTable
+      
       data={state.projects}
       columns={[
         {

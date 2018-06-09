@@ -11,7 +11,7 @@ export default class ProjectForm extends React.Component {
 
     this.state = {
       dateWorked:      props.project ? moment(props.project.dateWorked) : moment(),
-      assignee:        props.project ? props.children.project.assignee : '',
+      assignee:        props.project ? props.project.assignee : '',
       jiraRef:         props.project ? props.project.jiraRef : '',
       projectName:     props.project ? props.project.projectName : '',
       topic:           props.project ? props.project.topic : '',
@@ -60,7 +60,7 @@ export default class ProjectForm extends React.Component {
 
     e.preventDefault();
 
-    if( !this.state.project ) {
+    if( !this.state.projectName ) {
       this.setState( () => ({error: 'Please fill all the required fields'})) 
     } else {
       this.setState( () => ({error: ''}))
@@ -68,8 +68,8 @@ export default class ProjectForm extends React.Component {
         dateWorked: this.state.dateWorked.valueOf(),
         assignee: this.state.assignee,
         jiraRef: this.state.jiraRef,
-        project: this.state.project,
-        topic: this.state.workingHours,
+        project: this.state.projectName,
+        topic: this.state.topic,
         workingHours: parseFloat(this.state.workingHours),
         projectAction: this.state.projectAction
       })

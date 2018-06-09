@@ -9,7 +9,9 @@ const EditProjectPage = (props) => {
       <p>EditProjectPage of</p>
       
       <ProjectForm
+        project={props.project}
         onSubmit={(project) => {
+          
           props.dispatch(editProject(props.project.id, project));
           props.history.push('/');          
         }}
