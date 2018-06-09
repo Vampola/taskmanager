@@ -3,25 +3,25 @@ import uuid from  'uuid';
 // ADD_PROJECT
 export const addProject = (
     { 
-      date_worked = undefined,
-      assignee = '',
-      jira_ref = '',
-      project = '',
-      topic = 'vv',
-      working_hours = 0,
-      project_action = '' 
+      dateWorked = 0,
+      assignee = 'Default Assignee',
+      jiraRef = 'Default Jira Ref',
+      projectName = 'Default Project Name',
+      topic = 'Default Topic',
+      workingHours = 0,
+      projectAction = 'Default Action' 
     } = {}
   ) => ({
     type: 'ADD_PROJECT',
     project: {
       id: uuid(),
-      date_worked,
+      dateWorked,
       assignee,
-      jira_ref,
-      project,
+      jiraRef,
+      projectName,
       topic,
-      working_hours,
-      project_action
+      workingHours,
+      projectAction
     }
   }); 
   

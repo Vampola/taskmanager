@@ -14,7 +14,11 @@
         "jsx-a11y/anchor-is-valid": [ "error", { "components": [ "Link" ], "specialLink": [ "to" ] } ],
         "no-console":"warn",
         "no-unused-vars":"warn",
-        "import/first":"off"
+        "import/first":"off",
+        "react/display-name": "off",
+        "react/prefer-stateless-function": "off",
+        "react/no-unused-state": "warn",
+        "react/prop-types": "off"
     },
     "globals": {
     "document": false

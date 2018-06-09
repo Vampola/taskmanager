@@ -9,8 +9,8 @@ import {addProject} from './actions/projects'
 
 const store = configureStore();
 
-const projectOne = store.dispatch(addProject({ assignee: 'Damir', project: 'Project 1', working_hours:22 }))
-const projectTwo = store.dispatch(addProject({ assignee: 'Damir', project: 'Project 2', working_hours:80 }))
+const projectOne = store.dispatch(addProject({ assignee: 'Damir', projectName: 'Project 1', workingHours:22 }))
+const projectTwo = store.dispatch(addProject({ assignee: 'Damir', projectName: 'Project 2', workingHours:80 }))
 // const projectTwo = store.dispatch(addProject({assignee: 'Miljana', project: 'Project 2'}))
 // store.dispatch(removeProject({id: projectOne.project.id}))
 // store.dispatch(editProject(projectTwo.project.id, {assignee: 'Mira'}));
@@ -18,7 +18,6 @@ const projectTwo = store.dispatch(addProject({ assignee: 'Damir', project: 'Proj
 // store.subscribe(() => {
 //   
 // })
-console.log(store.getState());
 
 const App = (
   <div>

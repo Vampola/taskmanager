@@ -2,7 +2,8 @@ import React from "react";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import { connect } from "react-redux";
-
+import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 const ProjectTable = (state) => (
   <div>
@@ -13,8 +14,18 @@ const ProjectTable = (state) => (
           Header: "Creative Team Projects",
           columns: [
             {
+              Header: "Edit",
+              accessor: "id",
+              Cell: row => (
+                <Link to={`/edit/${row.value}`}>Edit</Link>
+              )
+            },
+            {
               Header: "Date",
-              accessor: "date_worked"
+              accessor: "dateWorked",
+              Cell: row => (
+                moment(row.value).format('DD MMM YYYY')
+              )
             },
             {
               Header: "In Charge",
@@ -22,11 +33,11 @@ const ProjectTable = (state) => (
             },
             {
               Header: "Jira Reference",
-              accessor: "jira_ref"
+              accessor: "jiraRef"
             },
             {
               Header: "Project",
-              accessor: "project"
+              accessor: "projectName"
             },
             {
               Header: "Topic",
@@ -34,7 +45,7 @@ const ProjectTable = (state) => (
             },
             {
               Header: "Working Hours",
-              accessor: "working_hours",
+              accessor: "workingHours",
               Cell: row => (
                 <div
                   style={{
@@ -60,7 +71,7 @@ const ProjectTable = (state) => (
             },
             {
               Header: "Action",
-              accessor: "project_action"
+              accessor: "projectAction"
             }
           ]
         }
@@ -71,15 +82,6 @@ const ProjectTable = (state) => (
   </div>
 );
 
-// Higher order component
-// const ConnectedProjectTable = connect((state) => {
-//   return {
-//     projects: state.projects
-//   }
-// })(ProjectTable);
-// export default ConnectedProjectTable;
-
-//Better usage
 
 const mapStateToProps = state => {
   return {
