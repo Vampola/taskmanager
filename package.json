@@ -4,8 +4,11 @@
   "description": "Scrath react",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "dev": "webpack-dev-server --open --mode development"
+    "build:dev": "webpack",
+    "build:prod": "webpack -p --env production",
+    "dev": "webpack-dev-server --open --mode development",
+    "production": "webpack-dev-server --open --mode production",
+    "test": "jest"
   },
   "author": "Damir",
   "license": "ISC",
@@ -36,6 +39,8 @@
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.8.2",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "jest": "^23.1.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.2",
     "style-loader": "^0.21.0",

@@ -1,28 +1,49 @@
-const path = require('path');
+const path = require("path");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-module.exports = {
-    entry: './src/app.js',
+module.exports = env => {
+  const isProduction = env === "production";
+  const CSSExtract = new ExtractTextPlugin("styles.css");
+
+  return {
+    entry: "./src/app.js",
     output: {
-        path: path.join(__dirname, 'public'),
-        filename: 'bundle.js'
+      path: path.join(__dirname, "public"),
+      filename: "bundle.js"
     },
     module: {
-        rules: [{ 
-            test: /\.js$/, 
-            exclude: /node_modules/, 
-            loader: 'babel-loader' 
-        }, {
-            test: /\.s?css$/,
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          loader: "babel-loader"
+        },
+        {
+          test: /\.s?css$/,
+          use: CSSExtract.extract({
             use: [
-                "style-loader", // creates style nodes from JS strings
-                "css-loader", // translates CSS into CommonJS
-                "sass-loader" // compiles Sass to CSS
+                {
+                 loader: "css-loader",
+                 options: {
+                     sourceMap: true
+                 }
+                }, 
+                {
+                 loader: "sass-loader",
+                 options: {
+                     sourceMap: true
+                 }
+                }
             ]
-        }]
+          })
+        }
+      ]
     },
-    devtool: 'cheap-eval-source-map',
+    plugins: [CSSExtract],
+    devtool: isProduction ? "source-map" : "inline-source-map",
     devServer: {
-        contentBase: path.join(__dirname, 'public'),
-        historyApiFallback: true
+      contentBase: path.join(__dirname, "public"),
+      historyApiFallback: true
     }
+  };
 };

@@ -68,7 +68,7 @@ export default class ProjectForm extends React.Component {
         dateWorked: this.state.dateWorked.valueOf(),
         assignee: this.state.assignee,
         jiraRef: this.state.jiraRef,
-        project: this.state.projectName,
+        projectName: this.state.projectName,
         topic: this.state.topic,
         workingHours: parseFloat(this.state.workingHours),
         projectAction: this.state.projectAction
@@ -77,7 +77,7 @@ export default class ProjectForm extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="formContainer">
         {this.state.error  && <p>{this.state.error }</p>}
         <form className="form-content" onSubmit={this.onSubmit}>
           <SingleDatePicker

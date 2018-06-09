@@ -27,11 +27,21 @@ header {
 	display: inline-block;
 	text-decoration: none;
 }
+.navigationBG {
+	background-color: $light-gray;
+	border-bottom: 1px solid darken($light-gray, 10%)
+}
 .navigation {
-    padding: 16px 0;
+    padding: $m-size 0;
 }
 .navigation a {
     color: $dark-blue;
     text-decoration: none;
-    padding-right: 8px;
+	padding: 8px;
+}
+.navigation a:hover {
+    border-bottom: 2px solid darken($dark-blue, 10%)
+}
+.is-active {
+    font-weight: bold;
 }

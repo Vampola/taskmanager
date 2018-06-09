@@ -1,0 +1,17 @@
+button {
+    background: $dark-blue;
+    color: #ffffff;
+    border: 1px solid $dark-blue;
+    font-weight: bold;
+    padding: 10px;
+    transition: all 0.1s ease 0s;
+}
+button:hover {
+    background-color: darken( $dark-blue, 10% );
+}
+.linkTable {
+    text-decoration: none;
+    color: $dark-blue;
+    font-weight: bold;
+    text-align: center;
+}
