@@ -4,8 +4,12 @@ import "react-table/react-table.css";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import numeral from 'numeral';
+// import selectProjectsTotal from '../selectors/working-hours-total';
 
-const ProjectTable = state => (
+
+const ProjectTable = (state) => (
+ 
   <div className="tableProjects">
     <ReactTable
       data={state.projects}
@@ -41,7 +45,9 @@ const ProjectTable = state => (
         {
           Header: "Working Hours",
           accessor: "workingHours",
-          Cell: row => <div>{row.value} Hours</div>
+          
+          Cell: row => <div>{numeral(row.value).multiply(60).format('00:00:00')} Hours</div>,
+          Footer: <span>{console.log('sum here - to do')}vxcvx</span>
           
         },
         {
@@ -66,7 +72,7 @@ const ProjectTable = state => (
 
 const mapStateToProps = state => {
   return {
-    projects: state.projects
+    projects: state.projects   
   };
 };
 

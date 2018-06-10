@@ -1,26 +1,28 @@
 import React from "react";
 import moment from "moment";
 import { SingleDatePicker } from "react-dates";
+import Slider from "react-rangeslider";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
+import "react-rangeslider/lib/index.css";
 
 export default class ProjectForm extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      dateWorked:      props.project ? moment(props.project.dateWorked) : moment(),
-      assignee:        props.project ? props.project.assignee : '',
-      jiraRef:         props.project ? props.project.jiraRef : '',
-      projectName:     props.project ? props.project.projectName : '',
-      topic:           props.project ? props.project.topic : '',
-      workingHours:    props.project ? (props.project.workingHours).toString() : '',
-      projectAction:   props.project ? props.project.projectAction : '',
+      dateWorked: props.project ? moment(props.project.dateWorked) : moment(),
+      assignee: props.project ? props.project.assignee : "",
+      jiraRef: props.project ? props.project.jiraRef : "",
+      projectName: props.project ? props.project.projectName : "",
+      topic: props.project ? props.project.topic : "",
+      workingHours: props.project ? props.project.workingHours : 0,
+      // workingHours: props.project ? props.project.workingHours.toString() : "",
+      projectAction: props.project ? props.project.projectAction : "",
       calendarFocused: false,
       error: ""
-    };     
-  } 
+    };
+  }
 
   onProjectChange = e => {
     const projectName = e.target.value;
@@ -42,28 +44,30 @@ export default class ProjectForm extends React.Component {
     const projectAction = e.target.value;
     this.setState(() => ({ projectAction }));
   };
-  onWorkingHoursChange = e => {
-    const workingHours = e.target.value;
-    if (workingHours.match(/^[0-9\b]+$/)) {
-      this.setState(() => ({ workingHours }));
-    }
+  onWorkingHoursChange = (workingHours) => {
+    this.setState(() => ({ workingHours }));
   };
+  // onWorkingHoursChange = e => {
+  //   const workingHours = e.target.value;
+  //   if (workingHours.match(/^[0-9\b]+$/)) {
+  //     this.setState(() => ({ workingHours }));
+  //   }
+  // };
   onDateChange = dateWorked => {
-    if(dateWorked) {
+    if (dateWorked) {
       this.setState(() => ({ dateWorked })); // if statemant  to prevent user  clear value
-    }    
+    }
   };
   onFocusChange = ({ focused }) => {
     this.setState(() => ({ calendarFocused: focused }));
   };
-  onSubmit = (e) => {
-
+  onSubmit = e => {
     e.preventDefault();
 
-    if( !this.state.projectName ) {
-      this.setState( () => ({error: 'Please fill all the required fields'})) 
+    if (!this.state.projectName) {
+      this.setState(() => ({ error: "Please fill all the required fields" }));
     } else {
-      this.setState( () => ({error: ''}))
+      this.setState(() => ({ error: "" }));
       this.props.onSubmit({
         dateWorked: this.state.dateWorked.valueOf(),
         assignee: this.state.assignee,
@@ -72,13 +76,13 @@ export default class ProjectForm extends React.Component {
         topic: this.state.topic,
         workingHours: parseFloat(this.state.workingHours),
         projectAction: this.state.projectAction
-      })
+      });
     }
-  }
+  };
   render() {
     return (
       <div className="formContainer">
-        {this.state.error  && <p>{this.state.error }</p>}
+        {this.state.error && <p>{this.state.error}</p>}
         <form className="form-content" onSubmit={this.onSubmit}>
           <SingleDatePicker
             date={this.state.dateWorked} // momentPropTypes.momentObj or null
@@ -122,14 +126,26 @@ export default class ProjectForm extends React.Component {
               value={this.state.topic}
               onChange={this.onTopicChange}
             />
-            <input
+            {/* <input
               className="form-control"
               name="hours"
               type="number"
               placeholder="Working Hours"
               value={this.state.workingHours}
               onChange={this.onWorkingHoursChange}
-            />
+            /> */}
+
+            <div className="slider">
+              <Slider
+                min={0.25}
+                max={24}
+                step={0.25}
+                value={this.state.workingHours}
+                onChange={this.onWorkingHoursChange}
+              />
+              <div className="value">{this.state.workingHours}</div>
+            </div>
+
             <textarea
               className="form-control"
               name="action"

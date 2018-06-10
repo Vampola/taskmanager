@@ -1,9 +1,10 @@
 import uuid from  'uuid';
+import moment from "moment";
 
 // ADD_PROJECT
 export const addProject = (
     { 
-      dateWorked = 0,
+      dateWorked = moment(),
       assignee = 'Default Assignee',
       jiraRef = 'Default Jira Ref',
       projectName = 'Default Project Name',

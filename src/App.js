@@ -9,8 +9,8 @@ import {addProject} from './actions/projects'
 
 const store = configureStore();
 
-const projectOne = store.dispatch(addProject({ assignee: 'Damir', jiraRef: 'SMD-879', projectName: 'Project 1', workingHours:22 }))
-const projectTwo = store.dispatch(addProject({ assignee: 'Damir', jiraRef: 'SMD-880', projectName: 'Project 2', workingHours:80 }))
+const projectOne = store.dispatch(addProject({ assignee: 'Damir', jiraRef: 'SMD-879', projectName: 'Project 1', workingHours:3 }))
+const projectTwo = store.dispatch(addProject({ assignee: 'Damir', jiraRef: 'SMD-880', projectName: 'Project 2', workingHours:5 }))
 // const projectTwo = store.dispatch(addProject({assignee: 'Miljana', project: 'Project 2'}))
 // store.dispatch(removeProject({id: projectOne.project.id}))
 // store.dispatch(editProject(projectTwo.project.id, {assignee: 'Mira'}));

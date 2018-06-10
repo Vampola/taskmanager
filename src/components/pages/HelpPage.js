@@ -34,7 +34,7 @@ import React from "react";
 
 const HelpPage = () => (
   <div className="content-container">
-    <p>This a help Page</p>
+    <p>Go to google, nothing here ¯\_(ツ)_/¯</p>
   </div>
 );
 
